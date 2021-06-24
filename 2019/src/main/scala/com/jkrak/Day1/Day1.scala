@@ -1,12 +1,8 @@
 package com.jkrak.Day1
 
-object Day1 {
-  def main (args: Array[String]): Unit = {
-    val inputRaw = ReadInput.readInputTextFile("day1","inputDay1")
-    val inputClean = inputRaw.map(_.toInt)
+import com.jkrak.common.ReadInput
 
-    println("sum is : " + sumNeededFuelRecursive(inputClean))
-  }
+object Day1 {
 
   def fuelNeeded(mass: Int): Int = if (mass > 6) mass / 3 - 2 else 0
 
@@ -20,15 +16,3 @@ object Day1 {
 
 
 }
-
-import scala.io.Source
-
-object ReadInput {
-  def readInputTextFile(day: String, fileName: String): Array[String] = {
-    val fullPath = s"2019/src/main/resources/$day/$fileName"
-    Source.fromFile(fullPath).getLines.toArray
-  }
-
-
-}
-
