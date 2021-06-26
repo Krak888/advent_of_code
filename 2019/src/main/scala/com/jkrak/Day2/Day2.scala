@@ -8,6 +8,7 @@ case class Intcode(array: Array[Int]) {
   def process(startPosition: Int): Intcode = array(startPosition) match {
     case 1  => add(startPosition)
     case 2  => mult(startPosition)
+    case 99 => this
     case _  => this
   }
 

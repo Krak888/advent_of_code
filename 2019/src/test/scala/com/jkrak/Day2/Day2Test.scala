@@ -25,4 +25,20 @@ class Day2Test extends AnyFlatSpec with Matchers{
 
     (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
   }
+
+  it should "1202 - opcode 99 return same Intcode - with many elements" in {
+    val testIntcode = Intcode(Array(99, 0, 1, 2, 3, 4))
+    val resultIntcode: Intcode = testIntcode.process(0)
+    val expectedIntCode = Intcode(Array(99, 0, 1, 2, 3, 4))
+
+    (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
+  }
+
+  it should "1202 - opcode 99 return same Intcode - with no other elements" in {
+    val testIntcode = Intcode(Array(99))
+    val resultIntcode: Intcode = testIntcode.process(0)
+    val expectedIntCode = Intcode(Array(99))
+
+    (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
+  }
 }
