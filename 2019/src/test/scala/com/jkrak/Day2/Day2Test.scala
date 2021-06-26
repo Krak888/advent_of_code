@@ -5,15 +5,17 @@ import org.scalatest._
 import matchers.should._
 
 class Day2Test extends AnyFlatSpec with Matchers{
-  it should "1202 - test creation of Intcode case class with all values" in {
-    val testIntcode = Intcode(1, 9, 10, 3)
+  it should "1202 - test creation of Intcode case class" in {
+  val testIntcode = Intcode(Array(1, 9, 10, 3))
     testIntcode shouldBe a [Intcode]
-
   }
 
-  it should "1202 - test creation of Intcode case class with one value" in {
-    val testIntcode = Intcode(1)
-    testIntcode shouldBe a [Intcode]
+  it should "1202 - opcode 1 add values of index in 2nd and 3rd position" in {
+    val testIntcode = Intcode(Array(1, 2, 2, 3))
+    val resultIntcode: Intcode = testIntcode.process(0)
+    val expectedIntCode = Intcode(Array(1,2,2,4))
+
+    (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
   }
 
 }

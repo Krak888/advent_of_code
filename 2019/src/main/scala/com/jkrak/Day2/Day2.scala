@@ -4,6 +4,21 @@ object Day2 {
 
 }
 
-case class Intcode(opcode: Int, firstVal: Int=0, secondVal: Int=0, tagetWrite: Int=0) {
+case class Intcode(array: Array[Int]) {
+  def process(startPosition: Int): Intcode = array(startPosition) match {
+    case 1 => add(startPosition)
+    case _ => this
+  }
 
+  def add(startPosition: Int): Intcode = {
+    val firstPosition  = array(startPosition + 1)
+    val secondPosition = array(startPosition + 2)
+    val addingPosition = array(startPosition + 3)
+
+    val adding = array(firstPosition) + array(secondPosition)
+
+    val newArray = array.slice(0, addingPosition) ++ Array(adding) ++ array.slice(addingPosition+1, array.length)
+
+    Intcode(newArray)
+  }
 }
