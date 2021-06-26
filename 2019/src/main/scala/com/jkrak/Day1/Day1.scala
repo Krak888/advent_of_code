@@ -1,7 +1,5 @@
 package com.jkrak.Day1
 
-import com.jkrak.common.ReadInput
-
 object Day1 {
 
   def fuelNeeded(mass: Int): Int = if (mass > 6) mass / 3 - 2 else 0
