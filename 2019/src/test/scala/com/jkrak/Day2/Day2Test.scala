@@ -18,4 +18,11 @@ class Day2Test extends AnyFlatSpec with Matchers{
     (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
   }
 
+  it should "1202 - opcode 2 multiply values of index in 2nd and 3rd position" in {
+    val testIntcode = Intcode(Array(2, 2, 2, 3))
+    val resultIntcode: Intcode = testIntcode.process(0)
+    val expectedIntCode = Intcode(Array(2,2,2,4))
+
+    (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
+  }
 }
