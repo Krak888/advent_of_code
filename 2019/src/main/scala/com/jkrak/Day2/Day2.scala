@@ -43,4 +43,9 @@ case class Intcode(array: Array[Int]) {
 
     Intcode(newArray)
   }
+
+  def prepareIntcode: Intcode = {
+    val newArray: Array[Int] = Array(array(0)) ++ Array(12,2) ++ array.slice(3,array.last)
+    Intcode(newArray)
+  }
 }

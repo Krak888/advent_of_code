@@ -78,4 +78,12 @@ class Day2Test extends AnyFlatSpec with Matchers{
 
     (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
   }
+
+  it should "1202 - prepare Intcode" in {
+    val testIntcode = Intcode(Array(1,1,1,4,99,5,6,0,99))
+    val resultIntcode: Intcode = testIntcode.prepareIntcode
+    val expectedIntCode = Intcode(Array(1,12,2,4,99,5,6,0,99))
+
+    (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
+  }
 }
