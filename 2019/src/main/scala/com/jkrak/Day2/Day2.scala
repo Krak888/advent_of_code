@@ -5,11 +5,19 @@ object Day2 {
 }
 
 case class Intcode(array: Array[Int]) {
-  def process(startPosition: Int): Intcode = array(startPosition) match {
-    case 1  => add(startPosition)
-    case 2  => mult(startPosition)
-    case 99 => this
-    case _  => this
+  def process(startPosition: Int): (Intcode, Int) = array(startPosition) match {
+    case 1  => (add(startPosition), startPosition + 4)
+    case 2  => (mult(startPosition), startPosition + 4)
+    case 99 => (this, -1)
+    case _  => (this, 0)
+  }
+
+  def fullProcess(startPosition: Int =0): Intcode = {
+    val (newIntcode, newPosition) = this.process(startPosition)
+    newPosition match {
+      case -1 => newIntcode
+      case _  => newIntcode.fullProcess(newPosition)
+    }
   }
 
   def add(startPosition: Int): Intcode = {
