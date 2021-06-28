@@ -1,9 +1,5 @@
 package com.jkrak.Day2
 
-object Day2 {
-
-}
-
 case class Intcode(array: Array[Int]) {
   def process(startPosition: Int): (Intcode, Int) = array(startPosition) match {
     case 1  => (add(startPosition), startPosition + 4)
@@ -45,7 +41,11 @@ case class Intcode(array: Array[Int]) {
   }
 
   def prepareIntcode: Intcode = {
-    val newArray: Array[Int] = Array(array(0)) ++ Array(12,2) ++ array.slice(3,array.last)
+    val head: Array[Int] = Array(array.head)
+    val corp: Array[Int] = Array(12,2)
+    val tail: Array[Int] = array.slice(3,array.length)
+
+    val newArray: Array[Int] = head ++ corp ++ tail
     Intcode(newArray)
   }
 }
