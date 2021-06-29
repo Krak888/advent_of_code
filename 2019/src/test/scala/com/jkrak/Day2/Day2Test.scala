@@ -81,9 +81,31 @@ class Day2Test extends AnyFlatSpec with Matchers{
 
   it should "1202 - prepare Intcode" in {
     val testIntcode = Intcode(Array(1,1,1,4,99,5,6,0,99))
-    val resultIntcode: Intcode = testIntcode.prepareIntcode
+    val resultIntcode: Intcode = testIntcode.prepareIntcode(12, 2)
     val expectedIntCode = Intcode(Array(1,12,2,4,99,5,6,0,99))
 
     (resultIntcode.array sameElements expectedIntCode.array) shouldBe true
   }
+  it should "1202 - generate an array with all possible values for noun and verbe" in {
+    val testAllNounAndVerbe = Intcode(Array(1)).getPossibleNounAndVerbe(4)
+    val expectedArray = Array((0,0),(0,1),(0,2),(0,3),
+                              (1,0),(1,1),(1,2),(1,3),
+                              (2,0),(2,1),(2,2),(2,3),
+                              (3,0),(3,1),(3,2),(3,3))
+    (testAllNounAndVerbe should be equals(expectedArray))
+  }
+
+  it should "1202 - gravity should return the noun and verbe used to find a given value" in {
+    val testIntcode = Intcode(Array(1,1,1,4,99,5,6,0,99))
+    val (resultIntcode, resultNoun, resultVerb): (Intcode, Int, Int) = testIntcode.gravityFind(30,5)
+    val expectedIntcode = Intcode(Array(30,1,1,4,2,5,6,0,99))
+    val expectedNoun = 0
+    val expectedVerb = 0
+
+    (resultIntcode.array sameElements expectedIntcode.array) shouldBe true
+    (resultNoun should be equals(expectedNoun))
+    (resultVerb should be equals(expectedVerb))
+
+  }
+
 }
